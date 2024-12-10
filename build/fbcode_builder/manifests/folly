@@ -45,7 +45,7 @@ openssl
 zlib
 
 [dependencies.os=linux]
-libiberty
+# libiberty
 libunwind
 
 # xz depends on autoconf which does not build on

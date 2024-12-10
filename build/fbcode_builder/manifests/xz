@@ -1,9 +1,9 @@
 [manifest]
 name = xz
 
-# ubuntu's package causes watchman's tests to hang
-[debs.not(distro=ubuntu)]
-liblzma-dev
+# # ubuntu's package causes watchman's tests to hang
+# [debs.not(distro=ubuntu)]
+# liblzma-dev
 
 [homebrew]
 xz
@@ -20,4 +20,4 @@ builder = autoconf
 subdir = xz-5.2.5
 
 [autoconf.args]
---disable-shared
+--enable-shared

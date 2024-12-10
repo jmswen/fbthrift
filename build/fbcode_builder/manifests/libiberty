@@ -22,6 +22,8 @@ subdir = binutils-2.42/libiberty
 # only build the parts needed for demangling
 # as we still want to use system linker and assembler etc
 [autoconf.args]
---disable-shared
+--enable-shared
+--enable-host-shared
+--with-pic
 --disable-testsuite
 --enable-install-libiberty

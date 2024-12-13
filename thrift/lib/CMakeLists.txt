@@ -21,6 +21,7 @@ if(thriftpy)
   add_subdirectory(py)
 endif()
 if(thriftpy3)
+  add_subdirectory(python)
   add_subdirectory(py3)
 endif()
 
@@ -28,6 +29,7 @@ set(LIB_DIRS
   thrift
   cpp
   cpp2
+  python
   py3
 )
 foreach(dir ${LIB_DIRS})

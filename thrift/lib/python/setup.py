@@ -8,7 +8,7 @@ Options.fast_fail = True
 exts = [
     Extension(
         "thrift.python.protocol",
-        sources=["protocol.pyx"],
+        sources=["thrift/python/protocol.pyx"],
         language="c++",
         extra_compile_args=["-std=c++17"],
     ),

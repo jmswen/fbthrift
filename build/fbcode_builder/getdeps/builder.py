@@ -629,7 +629,7 @@ def main():
         target = "all" if args.mode == "build" else "install"
         full_cmd = CMD_PREFIX + [
                 CMAKE,
-                "--verbose",
+                "--log-level=VERBOSE",
                 "--build",
                 BUILD_DIR,
                 "--target",
@@ -868,7 +868,7 @@ if __name__ == "__main__":
         self._run_cmd(
             [
                 cmake,
-                "--verbose",
+                "--log-level=VERBOSE",
                 "--build",
                 self.build_dir,
                 "--target",
@@ -1418,7 +1418,7 @@ install(FILES sqlite3.h sqlite3ext.h DESTINATION include)
         self._run_cmd(
             [
                 cmake,
-                "--verbose",
+                "--log-level=VERBOSE",
                 "--build",
                 self.build_dir,
                 "--target",

@@ -868,6 +868,7 @@ if __name__ == "__main__":
         self._run_cmd(
             [
                 cmake,
+                "--verbose",
                 "--build",
                 self.build_dir,
                 "--target",
@@ -1417,6 +1418,7 @@ install(FILES sqlite3.h sqlite3ext.h DESTINATION include)
         self._run_cmd(
             [
                 cmake,
+                "--verbose",
                 "--build",
                 self.build_dir,
                 "--target",

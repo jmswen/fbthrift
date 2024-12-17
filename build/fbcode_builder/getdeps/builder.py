@@ -629,6 +629,7 @@ def main():
         target = "all" if args.mode == "build" else "install"
         full_cmd = CMD_PREFIX + [
                 CMAKE,
+                "--verbose",
                 "--build",
                 BUILD_DIR,
                 "--target",

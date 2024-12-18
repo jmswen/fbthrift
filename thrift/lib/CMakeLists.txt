@@ -105,7 +105,7 @@ if(thriftpy3)
   add_custom_command(TARGET thrift_python_and_py3_bindings
     COMMAND
       python ${CMAKE_CURRENT_SOURCE_DIR}/setup.py
-      bdist_wheel ${incs}
+      bdist_wheel
     WORKING_DIRECTORY ${_cybld}
   )
 
@@ -122,7 +122,7 @@ if(thriftpy3)
     install(CODE "
       execute_process(
         COMMAND
-          python ${CMAKE_CURRENT_SOURCE_DIR}/python/setup.py install
+          python ${CMAKE_CURRENT_SOURCE_DIR}/setup.py install
           --prefix ${PYTHON_INSTALL_DIR}
         COMMAND_ECHO STDOUT
         WORKING_DIRECTORY ${_cybld}

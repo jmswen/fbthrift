@@ -49,6 +49,7 @@ if(thriftpy3)
     "${CMAKE_CURRENT_SOURCE_DIR}/python/protocol.pxd"
     "${CMAKE_CURRENT_SOURCE_DIR}/python/serializer.pxd"
     "${CMAKE_CURRENT_SOURCE_DIR}/python/std_libcpp.pxd"
+    "${CMAKE_CURRENT_SOURCE_DIR}/python/types.pxd"
     "${CMAKE_CURRENT_SOURCE_DIR}/python/adapter.pyx"
     "${CMAKE_CURRENT_SOURCE_DIR}/python/common.pyx"
     "${CMAKE_CURRENT_SOURCE_DIR}/python/converter.pyx"

@@ -182,7 +182,7 @@ if(thriftpy3)
   set_property(TARGET thrift_python_cpp PROPERTY VERSION ${PACKAGE_VERSION})
   target_compile_definitions(thrift_python_cpp PRIVATE BOOST_NO_AUTO_PTR)
   target_include_directories(thrift_python_cpp PRIVATE "${_cybld}")
-  target_link_libraries(thrift_python_cpp PUBLIC thrift)
+  target_link_libraries(thrift_python_cpp PUBLIC thriftcpp2)
 
   install(
     TARGETS thrift_python_cpp

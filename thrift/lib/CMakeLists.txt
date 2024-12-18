@@ -158,6 +158,7 @@ if(thriftpy3)
     create_cython_api_symlink ALL
     DEPENDS thrift_python_and_py3_bindings
     WORKING_DIRECTORY ${_cybld})
+  file(MAKE_DIRECTORY "${CMAKE_BINARY_DIR}/thrift/lib/python/")
   add_custom_command(
     TARGET
     create_cython_api_symlink

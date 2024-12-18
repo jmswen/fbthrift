@@ -99,7 +99,7 @@ exts = [
 setup(
     name="thrift",
     version="0.0.1",
-    packages=["thrift"],
+    packages=["thrift", "thrift.python"],
     package_data={"": [".*pxd", ".*h"]},
     setup_requires=["cython"],
     zip_safe=False,

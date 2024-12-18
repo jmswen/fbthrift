@@ -103,7 +103,29 @@ if(thriftpy3)
     COMMAND
       python ${CMAKE_CURRENT_SOURCE_DIR}/setup.py
       build_ext -f ${incs} ${libs}
+    BYPRODUCTS ${_cybld}/thrift/python/types_api.h
     WORKING_DIRECTORY ${_cybld}
+  )
+
+  add_library(
+    thrift_python_cpp
+      thrift/python/types.cpp
+  )
+
+  add_dependencies(thrift_python_cpp folly_python_bindings create_post_binding_symlink)
+  set_property(TARGET thrift_python_cpp PROPERTY VERSION ${PACKAGE_VERSION})
+  target_compile_definitions(thrift_python_cpp PRIVATE BOOST_NO_AUTO_PTR)
+  target_include_directories(thrift_python_cpp PRIVATE "${_cybld}")
+  target_link_libraries(thrift_python_cpp PUBLIC thrift)
+
+  install(
+    TARGETS thrift_python_cpp
+    EXPORT thrift
+    DESTINATION ${CMAKE_INSTALL_PREFIX}
+  )
+  install(
+    TARGETS thrift_python_cpp
+    DESTINATION ${PYTHON_INSTALL_DIR}
   )
 
   add_custom_command(TARGET thrift_python_and_py3_bindings

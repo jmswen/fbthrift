@@ -88,6 +88,13 @@ exts = [
         extra_compile_args=["-std=c++17"],
     ),
     Extension(
+        "thrift.python.serializer",
+        sources=["thrift/python/serializer.pyx"],
+        libraries=["folly"],
+        language="c++",
+        extra_compile_args=["-std=c++17"],
+    ),
+    Extension(
         "thrift.python.types",
         sources=["thrift/python/types.pyx"],
         libraries=["folly"],

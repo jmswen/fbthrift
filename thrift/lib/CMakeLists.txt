@@ -162,7 +162,7 @@ if(thriftpy3)
     TARGET
     create_cython_api_symlink
       COMMAND
-      ${CMAKE_COMMAND} -E create_symlink "${_cybld}/thrift/python/_types_api.h" "${_cybld}/thrift/python/types_api.h"
+      ${CMAKE_COMMAND} -E create_symlink "${_cybld}/thrift/python/_types_api.h" "${CMAKE_BINARY_DIR}/thrift/lib/python/types_api.h"
   )
 
   add_library(

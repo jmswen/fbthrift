@@ -158,12 +158,18 @@ if(thriftpy3)
     create_cython_api_symlink ALL
     DEPENDS thrift_python_and_py3_bindings
     WORKING_DIRECTORY ${_cybld})
-  file(MAKE_DIRECTORY "${CMAKE_BINARY_DIR}/thrift/lib/python/")
+  file(MAKE_DIRECTORY "${_cybld}/thrift/lib/python/")
   add_custom_command(
     TARGET
     create_cython_api_symlink
       COMMAND
-      ${CMAKE_COMMAND} -E create_symlink "${_cybld}/thrift/python/_types_api.h" "${CMAKE_BINARY_DIR}/thrift/lib/python/types_api.h"
+      ${CMAKE_COMMAND} -E create_symlink "${_cybld}/thrift/python/_types_api.h" "${_cybld}/thrift/lib/python/types_api.h"
+  )
+  add_custom_command(
+    TARGET
+    create_cython_api_symlink
+      COMMAND
+      ${CMAKE_COMMAND} -E create_symlink "${_cybld}/thrift/python/_types.h" "${_cybld}/thrift/lib/python/_types.h"
   )
 
   add_library(

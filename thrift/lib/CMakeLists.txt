@@ -35,6 +35,8 @@ if(thriftpy3)
 
   add_custom_target(create_binding_symlink_python ALL)
   file(GLOB BindingFiles
+    "${CMAKE_CURRENT_SOURCE_DIR}/python/abstract_types.py"
+    "${CMAKE_CURRENT_SOURCE_DIR}/python/metadata.py"
     "${CMAKE_CURRENT_SOURCE_DIR}/python/*.pxd"
     "${CMAKE_CURRENT_SOURCE_DIR}/python/*.pyx"
   )

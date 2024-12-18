@@ -135,7 +135,7 @@ if(thriftpy3)
   get_target_property(FMT_INCLUDE_DIR fmt::fmt INTERFACE_INCLUDE_DIRECTORIES)
   set(incs "-I$<JOIN:${prop},:>:${FOLLY_INCLUDE_DIR}:${Boost_INCLUDE_DIRS}:${FMT_INCLUDE_DIR}:${CMAKE_BINARY_DIR}/thrift/lib/cybld")
   get_filename_component(folly_lib ${FOLLY_LIBRARY} DIRECTORY)
-  set(libs "-L${CMAKE_BINARY_DIR}:${folly_lib}")
+  set(libs "-L${CMAKE_LIBRARY_OUTPUT_DIRECTORY}:${folly_lib}")
 
   add_custom_target(
     thrift_python_and_py3_bindings ALL

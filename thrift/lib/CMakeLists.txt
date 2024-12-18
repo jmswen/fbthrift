@@ -31,6 +31,20 @@ if(thriftpy3)
   #  add_subdirectory(python)
   #  add_subdirectory(py3)
 
+
+  add_library(
+    thrift_python_serializer
+      python/Serializer.cpp
+  )
+  set_property(TARGET thrift_python_cpp PROPERTY VERSION ${PACKAGE_VERSION})
+  target_compile_definitions(thrift_python_cpp PRIVATE BOOST_NO_AUTO_PTR)
+  target_link_libraries(thrift_python_cpp PUBLIC thriftcpp2)
+  install(
+    TARGETS thrift_python_serializer
+    EXPORT thrift
+    DESTINATION ${CMAKE_INSTALL_PREFIX}
+  )
+
   set(_cybld "${CMAKE_CURRENT_BINARY_DIR}/cybld")
 
   add_custom_target(create_binding_symlink_python ALL)
@@ -143,6 +157,7 @@ if(thriftpy3)
       create_binding_symlink_python
       create_binding_symlink_py3
       thriftcpp2
+      thrift_python_serializer
     WORKING_DIRECTORY ${_cybld})
 
   add_custom_command(TARGET thrift_python_and_py3_bindings
@@ -174,7 +189,6 @@ if(thriftpy3)
 
   add_library(
     thrift_python_cpp
-      python/Serializer.cpp
       python/types.cpp
   )
 

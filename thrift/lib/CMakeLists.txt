@@ -39,6 +39,8 @@ if(thriftpy3)
     "${CMAKE_CURRENT_SOURCE_DIR}/python/metadata.py"
     "${CMAKE_CURRENT_SOURCE_DIR}/python/*.pxd"
     "${CMAKE_CURRENT_SOURCE_DIR}/python/*.pyx"
+    "${CMAKE_CURRENT_SOURCE_DIR}/python/*.h"
+    "${CMAKE_CURRENT_SOURCE_DIR}/python/*.cpp"
   )
   file(MAKE_DIRECTORY "${_cybld}/thrift/python/")
 

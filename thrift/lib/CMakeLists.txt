@@ -109,7 +109,7 @@ if(thriftpy3)
 
   add_library(
     thrift_python_cpp
-      thrift/python/types.cpp
+      python/types.cpp
   )
 
   add_dependencies(thrift_python_cpp folly_python_bindings create_post_binding_symlink)

@@ -95,19 +95,17 @@ if(thriftpy3)
       thriftcpp2
     WORKING_DIRECTORY ${_cybld})
 
-  add_custom_command(TARGET thrift_python_and_py3_bindings POST_BUILD
+  add_custom_command(TARGET thrift_python_and_py3_bindings
     COMMAND
       python ${CMAKE_CURRENT_SOURCE_DIR}/setup.py
       build_ext -f ${incs} ${libs}
-    COMMAND_ECHO STDOUT
     WORKING_DIRECTORY ${_cybld}
   )
 
-  add_custom_command(TARGET thrift_python_and_py3_bindings POST_BUILD
+  add_custom_command(TARGET thrift_python_and_py3_bindings
     COMMAND
       python ${CMAKE_CURRENT_SOURCE_DIR}/setup.py
       bdist_wheel ${incs}
-    COMMAND_ECHO STDOUT
     WORKING_DIRECTORY ${_cybld}
   )
 
@@ -115,7 +113,6 @@ if(thriftpy3)
     COMMAND
       python ${CMAKE_CURRENT_SOURCE_DIR}/setup.py
       install --prefix ${CMAKE_INSTALL_PREFIX}
-    COMMAND_ECHO STDOUT
     WORKING_DIRECTORY ${_cybld}
   )
 

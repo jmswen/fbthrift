@@ -11,6 +11,13 @@ Options.fast_fail = True
 
 exts = [
     Extension(
+        "thrift.python.adapter",
+        sources=["thrift/python/adapter.pyx"],
+        libraries=["folly"],
+        language="c++",
+        extra_compile_args=["-std=c++17"],
+    ),
+    Extension(
         "thrift.python.common",
         sources=["thrift/python/common.pyx"],
         libraries=["folly"],
@@ -18,8 +25,57 @@ exts = [
         extra_compile_args=["-std=c++17"],
     ),
     Extension(
+        "thrift.python.converter",
+        sources=["thrift/python/converter.pyx"],
+        libraries=["folly"],
+        language="c++",
+        extra_compile_args=["-std=c++17"],
+    ),
+    Extension(
         "thrift.python.exceptions",
         sources=["thrift/python/exceptions.pyx"],
+        libraries=["folly"],
+        language="c++",
+        extra_compile_args=["-std=c++17"],
+    ),
+    Extension(
+        "thrift.python.flags",
+        sources=["thrift/python/flags.pyx"],
+        libraries=["folly"],
+        language="c++",
+        extra_compile_args=["-std=c++17"],
+    ),
+    Extension(
+        "thrift.python.mutable_containers",
+        sources=["thrift/python/mutable_containers.pyx"],
+        libraries=["folly"],
+        language="c++",
+        extra_compile_args=["-std=c++17"],
+    ),
+    Extension(
+        "thrift.python.mutable_exceptions",
+        sources=["thrift/python/mutable_exceptions.pyx"],
+        libraries=["folly"],
+        language="c++",
+        extra_compile_args=["-std=c++17"],
+    ),
+    Extension(
+        "thrift.python.mutable_serializer",
+        sources=["thrift/python/mutable_serializer.pyx"],
+        libraries=["folly"],
+        language="c++",
+        extra_compile_args=["-std=c++17"],
+    ),
+    Extension(
+        "thrift.python.mutable_typeinfos",
+        sources=["thrift/python/mutable_typeinfos.pyx"],
+        libraries=["folly"],
+        language="c++",
+        extra_compile_args=["-std=c++17"],
+    ),
+    Extension(
+        "thrift.python.mutable_types",
+        sources=["thrift/python/mutable_types.pyx"],
         libraries=["folly"],
         language="c++",
         extra_compile_args=["-std=c++17"],
@@ -34,6 +90,13 @@ exts = [
     Extension(
         "thrift.python.types",
         sources=["thrift/python/types.pyx"],
+        libraries=["folly"],
+        language="c++",
+        extra_compile_args=["-std=c++17"],
+    ),
+    Extension(
+        "thrift.python.util",
+        sources=["thrift/python/util.pyx"],
         libraries=["folly"],
         language="c++",
         extra_compile_args=["-std=c++17"],

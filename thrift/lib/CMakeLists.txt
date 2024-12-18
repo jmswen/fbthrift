@@ -37,9 +37,31 @@ if(thriftpy3)
   file(GLOB BindingFiles
     "${CMAKE_CURRENT_SOURCE_DIR}/python/abstract_types.py"
     "${CMAKE_CURRENT_SOURCE_DIR}/python/metadata.py"
-    "${CMAKE_CURRENT_SOURCE_DIR}/python/*.pxd"
-    "${CMAKE_CURRENT_SOURCE_DIR}/python/*.pyx"
-    "${CMAKE_CURRENT_SOURCE_DIR}/python/*.h"
+    "${CMAKE_CURRENT_SOURCE_DIR}/python/common.pxd"
+    "${CMAKE_CURRENT_SOURCE_DIR}/python/exceptions.pxd"
+    "${CMAKE_CURRENT_SOURCE_DIR}/python/flags.pxd"
+    "${CMAKE_CURRENT_SOURCE_DIR}/python/mutable_containers.pxd"
+    "${CMAKE_CURRENT_SOURCE_DIR}/python/mutable_exceptions.pxd"
+    "${CMAKE_CURRENT_SOURCE_DIR}/python/mutable_serializer.pxd"
+    "${CMAKE_CURRENT_SOURCE_DIR}/python/mutable_typeinfos.pxd"
+    "${CMAKE_CURRENT_SOURCE_DIR}/python/mutable_types.pxd"
+    "${CMAKE_CURRENT_SOURCE_DIR}/python/protocol.pxd"
+    "${CMAKE_CURRENT_SOURCE_DIR}/python/serializer.pxd"
+    "${CMAKE_CURRENT_SOURCE_DIR}/python/std_libcpp.pxd"
+    "${CMAKE_CURRENT_SOURCE_DIR}/python/adapter.pyx"
+    "${CMAKE_CURRENT_SOURCE_DIR}/python/common.pyx"
+    "${CMAKE_CURRENT_SOURCE_DIR}/python/exceptions.pyx"
+    "${CMAKE_CURRENT_SOURCE_DIR}/python/flags.pyx"
+    "${CMAKE_CURRENT_SOURCE_DIR}/python/mutable_containers.pyx"
+    "${CMAKE_CURRENT_SOURCE_DIR}/python/mutable_exceptions.pyx"
+    "${CMAKE_CURRENT_SOURCE_DIR}/python/mutable_serializer.pyx"
+    "${CMAKE_CURRENT_SOURCE_DIR}/python/mutable_typeinfos.pyx"
+    "${CMAKE_CURRENT_SOURCE_DIR}/python/mutable_types.pyx"
+    "${CMAKE_CURRENT_SOURCE_DIR}/python/protocol.pyx"
+    "${CMAKE_CURRENT_SOURCE_DIR}/python/serializer.pyx"
+    "${CMAKE_CURRENT_SOURCE_DIR}/python/flags.h"
+    "${CMAKE_CURRENT_SOURCE_DIR}/python/types.h"
+    "${CMAKE_CURRENT_SOURCE_DIR}/python/Serializer.h"
   )
   file(MAKE_DIRECTORY "${_cybld}/thrift/python/")
 
@@ -57,6 +79,28 @@ if(thriftpy3)
       PRE_BUILD
         COMMAND
         ${CMAKE_COMMAND} -E create_symlink "${_src}" "${_cybld}/thrift/python/${_target_file}"
+    )
+  endforeach()
+
+  # types.pyx must be handled specially due to generating types_api.h
+  foreach(
+    _src
+      "${CMAKE_CURRENT_SOURCE_DIR}/python/types.pxd"
+      "${CMAKE_CURRENT_SOURCE_DIR}/python/types.pyx"
+  )
+    get_filename_component(_target_file "${_src}" NAME)
+
+    message(
+      STATUS
+      "Linking ${_src} to ${_cybld}/thrift/python/_${_target_file}"
+    )
+
+    add_custom_command(
+      TARGET
+      create_binding_symlink_python
+      PRE_BUILD
+        COMMAND
+        ${CMAKE_COMMAND} -E create_symlink "${_src}" "${_cybld}/thrift/python/_${_target_file}"
     )
   endforeach()
 

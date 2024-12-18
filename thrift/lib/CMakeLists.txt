@@ -40,7 +40,6 @@ if(thriftpy3)
     "${CMAKE_CURRENT_SOURCE_DIR}/python/*.pxd"
     "${CMAKE_CURRENT_SOURCE_DIR}/python/*.pyx"
     "${CMAKE_CURRENT_SOURCE_DIR}/python/*.h"
-    "${CMAKE_CURRENT_SOURCE_DIR}/python/*.cpp"
   )
   file(MAKE_DIRECTORY "${_cybld}/thrift/python/")
 
@@ -109,6 +108,7 @@ if(thriftpy3)
 
   add_library(
     thrift_python_cpp
+      python/Serializer.cpp
       python/types.cpp
   )
 

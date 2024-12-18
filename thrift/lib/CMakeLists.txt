@@ -99,8 +99,39 @@ if(thriftpy3)
     COMMAND
       python ${CMAKE_CURRENT_SOURCE_DIR}/setup.py
       build_ext -f ${incs} ${libs}
+    COMMAND_ECHO STDOUT
     WORKING_DIRECTORY ${_cybld}
   )
+
+  add_custom_command(TARGET thrift_python_and_py3_bindings POST_BUILD
+    COMMAND
+      python ${CMAKE_CURRENT_SOURCE_DIR}/setup.py
+      bdist_wheel ${incs}
+    COMMAND_ECHO STDOUT
+    WORKING_DIRECTORY ${_cybld}
+  )
+
+  add_custom_command(TARGET thrift_python_and_py3_bindings POST_BUILD
+    COMMAND
+      python ${CMAKE_CURRENT_SOURCE_DIR}/setup.py
+      install --prefix ${CMAKE_INSTALL_PREFIX}
+    COMMAND_ECHO STDOUT
+    WORKING_DIRECTORY ${_cybld}
+  )
+
+  # Install to a second directory. Unfrotunately, setting CMAKE_INSTALL_PREFIX
+  # directly does not play nicely with getdeps.py.
+  if (NOT ${PYTHON_INSTALL_DIR} STREQUAL "")
+    install(CODE "
+      execute_process(
+        COMMAND
+          python ${CMAKE_CURRENT_SOURCE_DIR}/python/setup.py install
+          --prefix ${PYTHON_INSTALL_DIR}
+        COMMAND_ECHO STDOUT
+        WORKING_DIRECTORY ${_cybld}
+      )"
+    )
+  endif()
 endif()
 
 set(LIB_DIRS

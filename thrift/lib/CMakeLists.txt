@@ -112,7 +112,7 @@ if(thriftpy3)
       python/types.cpp
   )
 
-  add_dependencies(thrift_python_cpp folly_python_bindings create_post_binding_symlink)
+  add_dependencies(thrift_python_cpp thrift_python_and_py3_bindings)
   set_property(TARGET thrift_python_cpp PROPERTY VERSION ${PACKAGE_VERSION})
   target_compile_definitions(thrift_python_cpp PRIVATE BOOST_NO_AUTO_PTR)
   target_include_directories(thrift_python_cpp PRIVATE "${_cybld}")

@@ -94,13 +94,6 @@ exts = [
         language="c++",
         extra_compile_args=["-std=c++17"],
     ),
-    Extension(
-        "thrift.python.util",
-        sources=["thrift/python/util.pyx"],
-        libraries=["folly"],
-        language="c++",
-        extra_compile_args=["-std=c++17"],
-    ),
 ]
 
 setup(

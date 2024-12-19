@@ -44,7 +44,10 @@ if(thriftpy3)
     EXPORT thrift
     DESTINATION ${CMAKE_INSTALL_PREFIX}
   )
-
+  install(
+    TARGETS thrift_python_serializer
+    DESTINATION ${PYTHON_INSTALL_DIR}
+  )
   set(_cybld "${CMAKE_CURRENT_BINARY_DIR}/cybld")
 
   add_custom_target(create_binding_symlink_python ALL)

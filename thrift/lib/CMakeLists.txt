@@ -57,6 +57,18 @@ if(thriftpy3)
     )
   endforeach()
 
+  set(prop "$<TARGET_PROPERTY:thrift,INCLUDE_DIRECTORIES>")
+  get_target_property(FMT_INCLUDE_DIR fmt::fmt INTERFACE_INCLUDE_DIRECTORIES)
+  set(incs "-I$<JOIN:${prop},:>:${FOLLY_INCLUDE_DIR}:${Boost_INCLUDE_DIRS}:${FMT_INCLUDE_DIR}:${CMAKE_BINARY_DIR}/thrift/lib/cybld")
+  get_filename_component(folly_lib ${FOLLY_LIBRARY} DIRECTORY)
+  set(libs "-L${CMAKE_LIBRARY_OUTPUT_DIRECTORY}:${folly_lib}")
+
+  add_custom_target(
+    thrift_python_types_bindings ALL
+    DEPENDS
+      create_binding_symlink_python_types
+      thriftcpp2
+      WORKING_DIRECTORY ${_cybld})
   add_custom_command(TARGET thrift_python_types_bindings
     COMMAND
       python ${CMAKE_CURRENT_SOURCE_DIR}/setup.py
@@ -182,19 +194,13 @@ if(thriftpy3)
     )
   endforeach()
 
-  set(prop "$<TARGET_PROPERTY:thrift,INCLUDE_DIRECTORIES>")
-  get_target_property(FMT_INCLUDE_DIR fmt::fmt INTERFACE_INCLUDE_DIRECTORIES)
-  set(incs "-I$<JOIN:${prop},:>:${FOLLY_INCLUDE_DIR}:${Boost_INCLUDE_DIRS}:${FMT_INCLUDE_DIR}:${CMAKE_BINARY_DIR}/thrift/lib/cybld")
-  get_filename_component(folly_lib ${FOLLY_LIBRARY} DIRECTORY)
-  set(libs "-L${CMAKE_LIBRARY_OUTPUT_DIRECTORY}:${folly_lib}")
-
   add_custom_target(
     thrift_python_and_py3_bindings ALL
     DEPENDS
       create_binding_symlink_python
       create_binding_symlink_py3
       thriftcpp2
-      thrift_python_serializer
+      thrift_python_cpp
     WORKING_DIRECTORY ${_cybld})
 
   add_custom_command(TARGET thrift_python_and_py3_bindings

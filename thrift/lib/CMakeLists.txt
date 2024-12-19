@@ -82,6 +82,7 @@ if(thriftpy3)
     create_cython_types_api_symlink ALL
     DEPENDS thrift_python_types_bindings
     WORKING_DIRECTORY ${_cybld})
+  file(MAKE_DIRECTORY "${_cybld}/thrift/lib/python/")
   add_custom_command(
     TARGET
     create_cython_types_api_symlink

@@ -103,7 +103,7 @@ if "build_ext" not in sys.argv:
         Extension(
             "thrift.python.types",
             sources=["thrift/python/_types.pyx"],
-            libraries=["folly", "thriftcpp2"],
+            libraries=["folly", "thriftcpp2", "thrift_python_cpp", "thriftmetadata"],
             language="c++",
             extra_compile_args=["-std=c++17"],
         )

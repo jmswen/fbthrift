@@ -47,16 +47,17 @@ if(thriftpy3)
       "Linking ${_src} to ${_cybld}/thrift/python/_${_target_file}"
     )
 
+    add_custom_target(create_binding_symlink_python_types ALL)
     add_custom_command(
       TARGET
-      create_binding_symlink_python
+      create_binding_symlink_python_types
       PRE_BUILD
         COMMAND
         ${CMAKE_COMMAND} -E create_symlink "${_src}" "${_cybld}/thrift/python/_${_target_file}"
     )
   endforeach()
 
-  add_custom_command(TARGET thrift_python_and_py3_bindings
+  add_custom_command(TARGET thrift_python_types_bindings
     COMMAND
       python ${CMAKE_CURRENT_SOURCE_DIR}/setup.py
       build_ext --types-only -f ${incs} ${libs}
@@ -66,18 +67,18 @@ if(thriftpy3)
 
   # After cython runs, link _types_api.h to types_api.h
   add_custom_target(
-    create_cython_api_symlink ALL
-    DEPENDS thrift_python_and_py3_bindings
+    create_cython_types_api_symlink ALL
+    DEPENDS thrift_python_types_bindings
     WORKING_DIRECTORY ${_cybld})
   add_custom_command(
     TARGET
-    create_cython_api_symlink
+    create_cython_types_api_symlink
       COMMAND
       ${CMAKE_COMMAND} -E create_symlink "${_cybld}/thrift/python/_types_api.h" "${_cybld}/thrift/lib/python/types_api.h"
   )
   add_custom_command(
     TARGET
-    create_cython_api_symlink
+    create_cython_types_api_symlink
       COMMAND
       ${CMAKE_COMMAND} -E create_symlink "${_cybld}/thrift/python/_types.h" "${_cybld}/thrift/lib/python/_types.h"
   )
@@ -87,7 +88,7 @@ if(thriftpy3)
       python/types.cpp
       python/Serializer.cpp
   )
-  add_dependencies(thrift_python_cpp create_cython_api_symlink)
+  add_dependencies(thrift_python_cpp create_cython_types_api_symlink)
   set_property(TARGET thrift_python_cpp PROPERTY VERSION ${PACKAGE_VERSION})
   target_compile_definitions(thrift_python_cpp PRIVATE BOOST_NO_AUTO_PTR)
   target_include_directories(thrift_python_cpp PRIVATE "${_cybld}")

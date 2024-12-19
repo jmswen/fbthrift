@@ -35,6 +35,7 @@ if(thriftpy3)
   # Compile types.pyx first, as several other cython modules depend on types_api.h
   #####
 
+  add_custom_target(create_binding_symlink_python_types ALL)
   foreach(
     _src
       "${CMAKE_CURRENT_SOURCE_DIR}/python/types.pxd"
@@ -47,7 +48,6 @@ if(thriftpy3)
       "Linking ${_src} to ${_cybld}/thrift/python/_${_target_file}"
     )
 
-    add_custom_target(create_binding_symlink_python_types ALL)
     add_custom_command(
       TARGET
       create_binding_symlink_python_types

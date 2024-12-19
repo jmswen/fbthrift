@@ -96,19 +96,16 @@ exts = [
         language="c++",
         extra_compile_args=["-std=c++17"],
     ),
+    Extension(
+        "thrift.python.types",
+        sources=["thrift/python/_types.pyx"],
+        libraries=["folly", "thriftcpp2", "thrift_python_cpp", "thriftmetadata"],
+        language="c++",
+        extra_compile_args=["-std=c++17"],
+    ),
 ]
 
-if "build_ext" not in sys.argv:
-    exts.append(
-        Extension(
-            "thrift.python.types",
-            sources=["thrift/python/_types.pyx"],
-            libraries=["folly", "thriftcpp2", "thrift_python_cpp", "thriftmetadata"],
-            language="c++",
-            extra_compile_args=["-std=c++17"],
-        )
-    )
-elif "--types-only" in sys.argv:
+if "--types-only" in sys.argv:
     exts = [
         Extension(
             "thrift.python.types",

@@ -203,7 +203,12 @@ if(thriftpy3)
       thriftcpp2
       thrift_python_cpp
     WORKING_DIRECTORY ${_cybld})
-
+  add_custom_command(TARGET thrift_python_and_py3_bindings
+    COMMAND
+      python ${CMAKE_CURRENT_SOURCE_DIR}/setup.py
+      build_ext -f ${incs} ${libs}
+    WORKING_DIRECTORY ${_cybld}
+  )
   add_custom_command(TARGET thrift_python_and_py3_bindings
     COMMAND
       python ${CMAKE_CURRENT_SOURCE_DIR}/setup.py

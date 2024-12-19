@@ -109,8 +109,8 @@ if(thriftpy3)
     thrift_python_cpp
     PUBLIC
       thriftcpp2
-      folly
-      folly_python_cpp
+      Folly::folly
+      Folly::folly_python_cpp
     )
   install(
     TARGETS thrift_python_cpp

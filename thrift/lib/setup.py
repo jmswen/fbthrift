@@ -20,6 +20,7 @@ libs = [
 ]
 
 exts = [
+    # thrift.python extension modules
     Extension(
         "thrift.python.adapter",
         sources=["thrift/python/adapter.pyx"],
@@ -111,6 +112,35 @@ exts = [
         language="c++",
         extra_compile_args=["-std=c++17"],
     ),
+    # thrift.py3 extension modules
+    Extension(
+        "thrift.py3.common",
+        sources=["thrift/py3/common.pyx"],
+        libraries=libs,
+        language="c++",
+        extra_compile_args=["-std=c++17"],
+    ),
+    Extension(
+        "thrift.py3.exceptions",
+        sources=["thrift/py3/exceptions.pyx"],
+        libraries=libs,
+        language="c++",
+        extra_compile_args=["-std=c++17"],
+    ),
+    Extension(
+        "thrift.py3.serializer",
+        sources=["thrift/py3/serializer.pyx"],
+        libraries=libs,
+        language="c++",
+        extra_compile_args=["-std=c++17"],
+    ),
+    Extension(
+        "thrift.py3.server",
+        sources=["thrift/py3/server.pyx"],
+        libraries=libs,
+        language="c++",
+        extra_compile_args=["-std=c++17"],
+    ),
 ]
 
 if "--types-only" in sys.argv:
@@ -128,7 +158,7 @@ if "--types-only" in sys.argv:
 setup(
     name="thrift",
     version="0.0.1",
-    packages=["thrift", "thrift.python"],
+    packages=["thrift", "thrift.python", "thrift.py3"],
     package_data={"": [".*pxd", ".*h"]},
     setup_requires=["cython"],
     zip_safe=False,

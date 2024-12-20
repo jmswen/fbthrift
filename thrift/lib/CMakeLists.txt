@@ -75,7 +75,7 @@ if(thriftpy3)
     STATUS
     "[jmswen] WANGLE_INCLUDE_DIRS = ${wangle_include_dirs}"
   )
-  list(JOIN "${wangle_include_dirs}" ":" wangle_list)
+  list(JOIN wangle_include_dirs ":" wangle_list)
   message(
     STATUS
     "[jmswen] JOINED = -I${wangle_list}"

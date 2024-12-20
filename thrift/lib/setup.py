@@ -159,7 +159,7 @@ setup(
     name="thrift",
     version="0.0.1",
     packages=["thrift", "thrift.python", "thrift.py3"],
-    package_data={"": [".*pxd", ".*h"]},
+    package_data={"": ["*.pxd", "*.h"]},
     setup_requires=["cython"],
     zip_safe=False,
     ext_modules=cythonize(exts, compiler_directives={"language_level": 3}),

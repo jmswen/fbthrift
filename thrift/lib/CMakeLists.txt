@@ -81,7 +81,7 @@ if(thriftpy3)
     "[jmswen] JOINED = -I${wangle_list}"
   )
   # TODO     :$<JOIN:${wangle_include_dirs},:>
-  set(incs "-I$<JOIN:${prop},:>:${FOLLY_INCLUDE_DIR}:${Boost_INCLUDE_DIRS}:${fmt_include_dirs}:${CMAKE_BINARY_DIR}/thrift/lib/cybld")
+  set(incs "-I$<JOIN:${prop},:>:${FOLLY_INCLUDE_DIR}:${Boost_INCLUDE_DIRS}:${fmt_include_dirs}:${wangle_include_dirs}:${CMAKE_BINARY_DIR}/thrift/lib/cybld")
   get_filename_component(folly_lib ${FOLLY_LIBRARY} DIRECTORY)
   set(libs "-L${CMAKE_LIBRARY_OUTPUT_DIRECTORY}:${folly_lib}")
 

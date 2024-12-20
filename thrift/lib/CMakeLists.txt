@@ -60,6 +60,10 @@ if(thriftpy3)
   get_target_property(wangle_include_dirs wangle::wangle INTERFACE_INCLUDE_DIRECTORIES)
   message(
     STATUS
+    "[jmswen] THRIFT_INCLUDE_DIRS = ${prop}"
+  )
+  message(
+    STATUS
     "[jmswen] WANGLE_INCLUDE_DIRS = ${wangle_include_dirs}"
   )
   # TODO     :$<JOIN:${wangle_include_dirs},:>

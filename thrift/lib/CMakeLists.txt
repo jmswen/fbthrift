@@ -69,6 +69,10 @@ if(thriftpy3)
   )
   message(
     STATUS
+    "[jmswen] FMT_INCLUDE_DIR = ${FMT_INCLUDE_DIR}"
+  )
+  message(
+    STATUS
     "[jmswen] WANGLE_INCLUDE_DIRS = ${wangle_include_dirs}"
   )
   # TODO     :$<JOIN:${wangle_include_dirs},:>

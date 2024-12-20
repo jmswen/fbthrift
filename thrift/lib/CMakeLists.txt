@@ -57,7 +57,7 @@ if(thriftpy3)
 
   set(prop "$<TARGET_PROPERTY:thrift,INCLUDE_DIRECTORIES>")
   get_target_property(fmt_include_dirs fmt::fmt INTERFACE_INCLUDE_DIRECTORIES)
-  get_target_property(wangle_include_dirs wangle::wangle INTERFACE_INCLUDE_DIRECTORIES)
+  get_target_property(wangle_incs wangle::wangle INTERFACE_INCLUDE_DIRECTORIES)
   get_target_property(thrift_include_dirs thrift INCLUDE_DIRECTORIES)
   message(
     STATUS
@@ -73,14 +73,14 @@ if(thriftpy3)
   )
   message(
     STATUS
-    "[jmswen] WANGLE_INCLUDE_DIRS = ${wangle_include_dirs}"
+    "[jmswen] WANGLE_INCLUDE_DIRS = ${wangle_incs}"
   )
-  list(JOIN wangle_include_dirs ":" wangle_list)
+  list(JOIN wangle_incs ":" wangle_include_dirs)
   message(
     STATUS
     "[jmswen] JOINED = -I${wangle_list}"
   )
-  # TODO     :$<JOIN:${wangle_include_dirs},:>
+  # TODO     :$<JOIN:${wangle_incs},:>
   set(incs "-I$<JOIN:${prop},:>:${FOLLY_INCLUDE_DIR}:${Boost_INCLUDE_DIRS}:${fmt_include_dirs}:${wangle_include_dirs}:${CMAKE_BINARY_DIR}/thrift/lib/cybld")
   get_filename_component(folly_lib ${FOLLY_LIBRARY} DIRECTORY)
   set(libs "-L${CMAKE_LIBRARY_OUTPUT_DIRECTORY}:${folly_lib}")

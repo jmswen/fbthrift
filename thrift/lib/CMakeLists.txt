@@ -60,9 +60,10 @@ if(thriftpy3)
   get_target_property(wangle_include_dirs wangle::wangle INTERFACE_INCLUDE_DIRECTORIES)
   message(
     STATUS
-    "[jmswen] GOT ${wangle_include_dirs} AND $<JOIN:${wangle_include_dirs},:>"
+    "[jmswen] WANGLE_INCLUDE_DIRS = ${wangle_include_dirs}"
   )
-  set(incs "-I$<JOIN:${prop},:>:${FOLLY_INCLUDE_DIR}:${Boost_INCLUDE_DIRS}:${FMT_INCLUDE_DIR}:$<JOIN:${wangle_include_dirs},:>:${CMAKE_BINARY_DIR}/thrift/lib/cybld")
+  # TODO     :$<JOIN:${wangle_include_dirs},:>
+  set(incs "-I$<JOIN:${prop},:>:${FOLLY_INCLUDE_DIR}:${Boost_INCLUDE_DIRS}:${FMT_INCLUDE_DIR}:${CMAKE_BINARY_DIR}/thrift/lib/cybld")
   get_filename_component(folly_lib ${FOLLY_LIBRARY} DIRECTORY)
   set(libs "-L${CMAKE_LIBRARY_OUTPUT_DIRECTORY}:${folly_lib}")
 
@@ -71,7 +72,8 @@ if(thriftpy3)
     DEPENDS
       create_binding_symlink_python_types
       thriftcpp2
-      WORKING_DIRECTORY ${_cybld})
+    WORKING_DIRECTORY ${_cybld}
+  )
   add_custom_command(TARGET thrift_python_types_bindings
     COMMAND
       python ${CMAKE_CURRENT_SOURCE_DIR}/setup.py
@@ -211,7 +213,8 @@ if(thriftpy3)
       create_binding_symlink_py3
       thriftcpp2
       thrift_python_cpp
-    WORKING_DIRECTORY ${_cybld})
+    WORKING_DIRECTORY ${_cybld}
+  )
   add_custom_command(TARGET thrift_python_and_py3_bindings
     COMMAND
       python ${CMAKE_CURRENT_SOURCE_DIR}/setup.py

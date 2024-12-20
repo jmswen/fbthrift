@@ -58,9 +58,14 @@ if(thriftpy3)
   set(prop "$<TARGET_PROPERTY:thrift,INCLUDE_DIRECTORIES>")
   get_target_property(FMT_INCLUDE_DIR fmt::fmt INTERFACE_INCLUDE_DIRECTORIES)
   get_target_property(wangle_include_dirs wangle::wangle INTERFACE_INCLUDE_DIRECTORIES)
+  get_target_property(thrift_include_durs thrift INCLUDE_DIRECTORIES)
   message(
     STATUS
     "[jmswen] THRIFT_INCLUDE_DIRS = ${prop}"
+  )
+  message(
+    STATUS
+    "[jmswen] THRIFT_INCLUDE_DIRS_2 = ${thrift_include_durs}"
   )
   message(
     STATUS
